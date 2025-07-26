@@ -1,0 +1,6 @@
+Output Parsers in LangChain help convert raw LLM responses into structured formats like JSON, CSV, Pydantic models, and more. They ensure consistency, validation, and ease of use in applications.
+
+- string Output parser
+- string Output parser
+- structured Output parser
+- pydantic Output parser
