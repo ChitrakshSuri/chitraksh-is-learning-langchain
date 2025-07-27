@@ -1,0 +1,112 @@
+
+# 🧠 LangChain Runnables – Cheat Sheet
+
+A quick and practical reference to understand all major types of Runnables in LangChain.
+
+---
+
+## 🔧 What is a `Runnable`?
+
+**`Runnable`** is the base building block in LangChain. Any component that takes input, performs processing, and returns output can be a Runnable.
+
+### ✨ Key Properties:
+
+- Encapsulates any computation or transformation.
+- Can be composed using chaining (`|`) or in sequences/branches.
+- Helps build reusable and modular AI pipelines.
+
+### 🔨 Custom Runnable Example:
+
+```python
+from langchain_core.runnables import Runnable
+
+class MyRunnable(Runnable):
+    def invoke(self, input):
+        return input.upper()
+```
+
+---
+
+## 🔁 `RunnableSequence`
+
+Runs a list of runnables **sequentially**. Output of one becomes input of next.
+
+✅ Use for LLM pipelines like: Prompt → LLM → Parser
+
+```python
+RunnableSequence([prompt, llm, parser])
+```
+
+---
+
+## ⚡ `RunnableParallel`
+
+Runs multiple runnables **in parallel**, returns tuple or dict of outputs.
+
+✅ Use for multi-model inference or parallel tasks.
+
+```python
+RunnableParallel({
+    "task1": prompt1 | llm1,
+    "task2": prompt2 | llm2,
+})
+```
+
+---
+
+## 🔄 `RunnablePassthrough`
+
+Just returns the **input as-is**. Does nothing.
+
+✅ Useful when you don’t want to modify data.
+
+```python
+RunnablePassthrough()
+```
+
+---
+
+## 🧠 `RunnableLambda`
+
+Lets you inject **custom Python logic** as a lambda or function.
+
+✅ Useful for transformations or filters.
+
+```python
+RunnableLambda(lambda x: x.lower())
+```
+
+---
+
+## 🌿 `RunnableBranch`
+
+Runs **conditional logic** like if/else. Each branch has a condition and its corresponding chain.
+
+✅ Good for dynamic flows.
+
+```python
+RunnableBranch([
+    (lambda x: "error" in x, error_chain),
+    (lambda x: True, success_chain)
+])
+```
+
+---
+
+## 🧪 Bonus Tip – Piping (`|`)
+
+You can chain runnables with the pipe operator:
+
+```python
+final_chain = prompt | llm | parser
+```
+
+---
+
+## 📌 Summary Line
+
+> **Runnable = reusable, composable unit that processes input to output.** Foundation of LangChain's modular workflows.
+
+---
+
+Happy chaining! 💻⚙️🔥

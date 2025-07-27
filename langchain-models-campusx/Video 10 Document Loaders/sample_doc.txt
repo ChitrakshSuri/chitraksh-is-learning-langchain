@@ -1,0 +1,10 @@
+
+LangChain is a framework for developing applications powered by language models. 
+It enables chaining together components like LLMs, prompt templates, parsers, retrievers, and tools into a coherent pipeline.
+
+Core Concepts:
+- Runnable: Any object that can take input and produce output.
+- Chains: Combine multiple runnables sequentially.
+- Agents: Dynamically decide which tools to use based on user input.
+
+This is just a sample file to test loading documents using a TextLoader or other document loaders.
